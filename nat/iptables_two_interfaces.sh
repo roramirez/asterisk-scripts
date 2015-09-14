@@ -10,23 +10,23 @@
 #
 #
 #
-#  Config asterisk LAN 
-# 
-#  /etc/asterisk/sip.conf   
+#  Config asterisk LAN
+#
+#  /etc/asterisk/sip.conf
 #    [general]
 #     externip = x.x.x.x(ip wan firewall)
-#     localnet = 192.168.1.0/255.255.255.0 
+#     localnet = 192.168.1.0/255.255.255.0
 #
 #    [peer]
-#      reinvite    = no 
-#      canreinvite = no 
+#      reinvite    = no
+#      canreinvite = no
 #      nat = yes
-#  
-#  /etc/asterisk/rtp.conf   
+#
+#  /etc/asterisk/rtp.conf
 #    rtpstart=10000
 #     rtpend=20000
-#       
-#  
+#
+#
 #
 iptables -F
 iptables -X
@@ -53,4 +53,3 @@ iptables -A FORWARD -i $WAN -o $DMZ -m udp -p udp --dport 10000:20000 -d $ASTERI
 # SIP port
 iptables -t nat -A PREROUTING -i $WAN -m udp -p udp --dport 5060 -j DNAT --to-destination $ASTERISK_IP
 iptables -A FORWARD -i $WAN -o $DMZ -m udp -p udp --dport 5060 -d $ASTERISK_IP -j ACCEPT
-~               
